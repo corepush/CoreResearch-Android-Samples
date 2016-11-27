@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.coreasp.research.android.samples">
+
+
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <!-- C2DMのパーミッション設定 -->
+    <permission android:name="com.coreasp.research.android.samples.permission.C2D_MESSAGE" android:protectionLevel="signature" />
+    <uses-permission android:name="com.coreasp.research.android.samples.permission.C2D_MESSAGE" />
+    <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+
+        <!-- メインのアクティビティを設定 -->
+        <activity android:name=".MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <!-- トークン登録のアクティビティを設定 -->
+        <activity android:name=".TokenRegisterActivity"></activity>
+
+        <!-- トークン削除のアクティビティを設定 -->
+        <activity android:name=".TokenUnregisterActivity"></activity>
+
+        <!-- 履歴画面のアクティビティを設定 -->
+        <activity android:name=".HistoryActivity"></activity>
+
+        <!-- アンケート画面のアクティビティを設定 -->
+        <activity android:name=".QuestionnaireActivity" android:theme="@style/TransTheme"></activity>
+
+
+        <!-- GCM用のブロードキャストレシーバーを設定 -->
+        <receiver
+            android:name="com.coreasp.CorePushBroadcastReceiver"
+            android:permission="com.google.android.c2dm.permission.SEND" >
+            <intent-filter>
+                <!-- Receives the actual messaes. -->
+                <action android:name="com.google.android.c2dm.intent.RECEIVE" />
+                <!-- Receives the registration id. -->
+                <action android:name="com.google.android.c2dm.intent.REGISTRATION" />
+                <category android:name="com.coreasp.research.android.samples" />
+            </intent-filter>
+        </receiver>
+        <service android:name="com.coreasp.CorePushIntentService" />
+    </application>
+
+</manifest>

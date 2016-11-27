@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">CoreResearchSamples</string>
+    <string name="core_push_config_key">XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</string>
+    <string name="gcm_defaultSenderId">XXXXXXXXXXXX</string>
+</resources>
